@@ -4,8 +4,13 @@ function mintNFT() {
   const status = document.getElementById("statusText");
   const img = document.getElementById("nftImage");
 
-  // Show mystery box first
-  img.src = "assets/mystery-box.PNG";
+  // FORCE show mystery box (reset everything first)
+  img.style.boxShadow = "none";
+  img.src = "";
+  setTimeout(() => {
+    img.src = "assets/mystery-box.PNG";
+  }, 10);
+
   status.innerText = "Minting...";
 
   setTimeout(() => {
@@ -14,10 +19,8 @@ function mintNFT() {
     setTimeout(() => {
       const randomId = Math.floor(Math.random() * totalNFTs) + 1;
 
-      // Show NFT
       img.src = "nfts/" + randomId + ".PNG";
 
-      // Rarity system (fixed per NFT)
       const rarityMap = {
         1: "🟢 Common",
         2: "🟢 Common",
@@ -33,10 +36,8 @@ function mintNFT() {
 
       const rarityText = rarityMap[randomId];
 
-      // Optional: add glow effect based on rarity
       img.style.boxShadow = getGlowByRarity(rarityText);
 
-      // Final message
       status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
 
     }, 1200);
