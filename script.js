@@ -1,16 +1,19 @@
-const totalNFTs = 10;
+const totalNFTs = 999;
 
 function mintNFT() {
+  const status = document.getElementById("statusText");
   const img = document.getElementById("nftImage");
 
-  img.src = "assets/mystery-box.PNG";
+  img.src = "assets/mystery-box.png";
+  status.innerText = "Minting...";
 
   setTimeout(() => {
-    const randomId = Math.floor(Math.random() * totalNFTs) + 1;
+    status.innerText = "Revealing...";
 
-    img.src = "nfts/" + randomId + ".heic";
-  }, 2000);
-}
+    setTimeout(() => {
+      const randomId = Math.floor(Math.random() * totalNFTs) + 1;
+
+      img.src = "nfts/" + randomId + ".png";
 
       const rarityRoll = Math.random();
 
