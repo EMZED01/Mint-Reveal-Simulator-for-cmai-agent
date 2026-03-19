@@ -40,7 +40,7 @@ button:hover {
 }
 
 .footer {
-  margin-top: 5px;
+  margin-top: 20px;
   padding: 20px;
   text-align: center;
   font-size: 14px;
@@ -48,6 +48,7 @@ button:hover {
 }
 
 .footer a {
+  margin-top: 10px;
   color: #ffffff;
   text-decoration: none;
   margin: 0 5px;
