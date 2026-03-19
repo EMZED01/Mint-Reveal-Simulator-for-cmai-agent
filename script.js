@@ -13,7 +13,7 @@ function mintNFT() {
     setTimeout(() => {
       const randomId = Math.floor(Math.random() * totalNFTs) + 1;
 
-      img.src = "nfts/" + randomId + ".jpeg";
+      img.src = "nfts/" + randomId + ".heic";
 
       const rarityRoll = Math.random();
 
