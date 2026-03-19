@@ -46,13 +46,13 @@ function mintNFT() {
 
 // Glow effect per rarity
 function getGlowByRarity(rarity) {
-  if (rarity.includes("Common")) return "0 0 10px gray";
-  if (rarity.includes("Uncommon")) return "0 0 10px green";
+  if (rarity.includes("Common")) return "0 0 10px Green";
+  if (rarity.includes("Genesis")) return "0 0 10px Yellow";
   if (rarity.includes("Rare")) return "0 0 15px blue";
   if (rarity.includes("Epic")) return "0 0 15px purple";
   if (rarity.includes("Legendary")) return "0 0 20px orange";
   if (rarity.includes("Mythic")) return "0 0 25px red";
-  if (rarity.includes("Ultra Rare")) return "0 0 30px gold";
+  if (rarity.includes("Celestial Crown")) return "0 0 30px gold";
   return "none";
 }
 
