@@ -4,62 +4,64 @@ function mintNFT() {
   const status = document.getElementById("statusText");
   const img = document.getElementById("nftImage");
 
-  // Show mystery box
+  // Show mystery box first
   img.src = "assets/mystery-box.PNG";
-  img.style.boxShadow = "none";
   status.innerText = "Minting...";
 
   setTimeout(() => {
     status.innerText = "Revealing...";
 
     setTimeout(() => {
-      // RANDOM NFT (1–10)
       const randomId = Math.floor(Math.random() * totalNFTs) + 1;
 
-      console.log("Minted ID:", randomId); // DEBUG
-
-      // Set image
+      // Show NFT
       img.src = "nfts/" + randomId + ".PNG";
 
+      // Rarity system (fixed per NFT)
+      const rarityMap = {
+        1: "🟢 Common",
+        2: "🟢 Common",
+        3: "🟡 Uncommon",
+        4: "🔵 Rare",
+        5: "🔵 Rare",
+        6: "🟣 Epic",
+        7: "🟣 Epic",
+        8: "🟠 Legendary",
+        9: "🔴 Mythic",
+        10: "⚡ Ultra Rare"
+      };
 
-const rarityData = {
-  1: { name: "🟡 Genesis", glow: "#FFD700" },
-  2: { name: "🟢 Rising", glow: "#00FF7F" },
-  3: { name: "🔵 Origin", glow: "#1E90FF" },
-  4: { name: "🟠 Eclipse", glow: "#FF8C00" },
-  5: { name: "🟤 Rare", glow: "#8B4513" },
-  6: { name: "⚪️ Ultra Rare", glow: "#E5E5E5" },
-  7: { name: "🟣 Epic", glow: "#A020F0" },
-  8: { name: "💎 Legendary", glow: "#FFD700" },
-  9: { name: "🔴 Mythic", glow: "#FF0000" },
-  10: { name: "⚡️ Celestial Crown 👑", glow: "#00FFFF" }
-};
+      const rarityText = rarityMap[randomId];
 
-const data = rarityData[randomId];
+      // Optional: add glow effect based on rarity
+      img.style.boxShadow = getGlowByRarity(rarityText);
 
-// Set NFT image
-img.src = "nfts/" + randomId + ".png";
+      // Final message
+      status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
 
-// Apply glow
-img.style.boxShadow = `0 0 20px ${data.glow}, 0 0 40px ${data.glow}`;
+    }, 1200);
 
-// Show result
-status.innerText = `You minted NFT #${randomId}\n${data.name}`;
-
-#nftImage {
-  transition: box-shadow 0.4s ease;
+  }, 1200);
 }
 
+// Glow effect per rarity
+function getGlowByRarity(rarity) {
+  if (rarity.includes("Common")) return "0 0 10px gray";
+  if (rarity.includes("Uncommon")) return "0 0 10px green";
+  if (rarity.includes("Rare")) return "0 0 15px blue";
+  if (rarity.includes("Epic")) return "0 0 15px purple";
+  if (rarity.includes("Legendary")) return "0 0 20px orange";
+  if (rarity.includes("Mythic")) return "0 0 25px red";
+  if (rarity.includes("Ultra Rare")) return "0 0 30px gold";
+  return "none";
+}
 
 // Share on Twitter
 function shareMint() {
-  const statusText = document.getElementById("statusText").innerText;
+  const status = document.getElementById("statusText").innerText;
 
-  const text = encodeURIComponent(statusText + " 👀🔥");
+  const text = encodeURIComponent(status + " 👀🔥");
   const url = encodeURIComponent(window.location.href);
 
-  window.open(
-    `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-    "_blank"
-  );
+  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`);
 }
