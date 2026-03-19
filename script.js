@@ -13,36 +13,37 @@ function mintNFT() {
 
   status.innerText = "Minting...";
 
-  setTimeout(() => {
-  status.innerText = "Revealing...";
+setTimeout(() => {
+    status.innerText = "Revealing...";
 
-  setTimeout(() => {
-    const randomId = Math.floor(Math.random() * totalNFTs) + 1;
+    setTimeout(() => {
+      const randomId = Math.floor(Math.random() * totalNFTs) + 1;
 
-    img.src = "nfts/" + randomId + ".PNG";
+      img.src = "nfts/" + randomId + ".PNG";
 
-    const rarityMap = {
-      1: "🟢 Common",
-      2: "🟢 Common",
-      3: "🟡 Genesis",
-      4: "🔵 Rare",
-      5: "🔵 Rare",
-      6: "🟣 Epic",
-      7: "🟣 Epic",
-      8: "🟠 Legendary",
-      9: "🔴 Mythic",
-      10: "👑 Celestial Crown"
-    };
+      const rarityMap = {
+        1: "🟢 Common",
+        2: "🟢 Common",
+        3: "🟡 Genesis",
+        4: "🔵 Rare",
+        5: "🔵 Rare",
+        6: "🟣 Epic",
+        7: "🟣 Epic",
+        8: "🟠 Legendary",
+        9: "🔴 Mythic",
+        10: "👑 Celestial Crown"
+      };
 
-    const rarityText = rarityMap[randomId];
+      const rarityText = rarityMap[randomId];
 
-    img.style.boxShadow = getGlowByRarity(rarityText);
+      img.style.boxShadow = getGlowByRarity(rarityText);
 
-    status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
+      status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
 
-  }, 600); // faster reveal (was 1200)
+    }, 1200);
 
-}, 600); // faster minting (was 1200)
+  }, 1200);
+}
 
 // Glow effect per rarity
 function getGlowByRarity(rarity) {
