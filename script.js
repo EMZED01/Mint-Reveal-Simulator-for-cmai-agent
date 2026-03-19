@@ -3,58 +3,60 @@ const totalNFTs = 10;
 function mintNFT() {
   const status = document.getElementById("statusText");
   const img = document.getElementById("nftImage");
+  const video = document.getElementById("revealVideo");
 
-  // Show mystery box first
+  // Step 1: Show mystery box
+  img.style.display = "block";
+  video.style.display = "none";
   img.src = "assets/mystery-box.PNG";
+  img.style.boxShadow = "none";
+
   status.innerText = "Minting...";
 
   setTimeout(() => {
     status.innerText = "Revealing...";
 
-    setTimeout(() => {
+    // Step 2: Play video
+    img.style.display = "none";
+    video.style.display = "block";
+    video.currentTime = 0;
+    video.play();
+
+    // Step 3: When video ends → reveal NFT
+    video.onended = () => {
       const randomId = Math.floor(Math.random() * totalNFTs) + 1;
 
-      // Show NFT
+      // Hide video, show NFT
+      video.style.display = "none";
+      img.style.display = "block";
       img.src = "nfts/" + randomId + ".PNG";
 
-      // Rarity system (fixed per NFT)
-      const rarityMap = {
-        1: "🟢 Common",
-        2: "🟢 Common",
-        3: "🟡 Genesis",
-        4: "🔵 Rare",
-        5: "🔵 Rare",
-        6: "🟣 Epic",
-        7: "🟣 Epic",
-        8: "🟠 Legendary",
-        9: "🔴 Mythic",
-        10: "👑 Celestial Crown"
+      // Updated rarity system (your custom one)
+      const rarityData = {
+        1: { name: "🟡 Genesis", glow: "#FFD700" },
+        2: { name: "🟢 Rising", glow: "#00FF7F" },
+        3: { name: "🔵 Origin", glow: "#1E90FF" },
+        4: { name: "🟠 Eclipse", glow: "#FF8C00" },
+        5: { name: "🟤 Rare", glow: "#8B4513" },
+        6: { name: "⚪️ Ultra Rare", glow: "#E5E5E5" },
+        7: { name: "🟣 Epic", glow: "#A020F0" },
+        8: { name: "💎 Legendary", glow: "#FFD700" },
+        9: { name: "🔴 Mythic", glow: "#FF0000" },
+        10: { name: "⚡️ Celestial Crown 👑", glow: "#00FFFF" }
       };
 
-      const rarityText = rarityMap[randomId];
+      const data = rarityData[randomId];
 
-      // Optional: add glow effect based on rarity
-      img.style.boxShadow = getGlowByRarity(rarityText);
+      // Glow effect
+      img.style.boxShadow = `0 0 20px ${data.glow}, 0 0 40px ${data.glow}`;
 
-      // Final message
-      status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
+      // Final text
+      status.innerText = `You minted NFT #${randomId}\n${data.name}`;
+    };
 
-    }, 1200);
-
-  }, 1200);
+  }, 800);
 }
 
-// Glow effect per rarity
-function getGlowByRarity(rarity) {
-  if (rarity.includes("Common")) return "0 0 10px Green";
-  if (rarity.includes("Genesis")) return "0 0 10px Yellow";
-  if (rarity.includes("Rare")) return "0 0 15px blue";
-  if (rarity.includes("Epic")) return "0 0 15px purple";
-  if (rarity.includes("Legendary")) return "0 0 20px orange";
-  if (rarity.includes("Mythic")) return "0 0 25px red";
-  if (rarity.includes("Celestial Crown")) return "0 0 30px gold";
-  return "none";
-}
 
 // Share on Twitter
 function shareMint() {
