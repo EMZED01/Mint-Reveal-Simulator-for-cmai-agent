@@ -1,4 +1,4 @@
-const totalNFTs = 999;
+const totalNFTs = 10;
 
 function mintNFT() {
   const status = document.getElementById("statusText");
