@@ -15,7 +15,7 @@ function mintNFT() {
 
       console.log("Minted:", randomId); // debug
 
-      img.src = "nfts/" + randomId + ".png";
+      img.src = "nfts/" + randomId + ".heic";
 
       let rarityText = "";
       const rarityRoll = Math.random();
