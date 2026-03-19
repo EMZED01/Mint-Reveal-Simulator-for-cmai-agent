@@ -1,59 +1,71 @@
 const totalNFTs = 10;
+let remainingNFTs = [];
+
+// Initialize pool
+function resetNFTPool() {
+  remainingNFTs = [];
+  for (let i = 1; i <= totalNFTs; i++) {
+    remainingNFTs.push(i);
+  }
+}
+
+// Start with full pool
+resetNFTPool();
 
 function mintNFT() {
   const status = document.getElementById("statusText");
   const img = document.getElementById("nftImage");
 
-  // Show mystery box first
-  img.src = "assets/mystery-box.PNG";
+  // Show mystery box
+  img.src = "assets/mystery-box.png";
+  img.style.boxShadow = "none";
   status.innerText = "Minting...";
 
   setTimeout(() => {
     status.innerText = "Revealing...";
 
     setTimeout(() => {
-      const randomId = Math.floor(Math.random() * totalNFTs) + 1;
+
+      // Reset pool if empty
+      if (remainingNFTs.length === 0) {
+        resetNFTPool();
+      }
+
+      // Pick random NFT from remaining
+      const randomIndex = Math.floor(Math.random() * remainingNFTs.length);
+      const randomId = remainingNFTs[randomIndex];
+
+      // Remove from pool (no repeats)
+      remainingNFTs.splice(randomIndex, 1);
 
       // Show NFT
       img.src = "nfts/" + randomId + ".PNG";
 
-      // Rarity system (fixed per NFT)
-      const rarityMap = {
-        1: "🟢 Common",
-        2: "🟢 Common",
-        3: "🟡 Genesis",
-        4: "🔵 Rare",
-        5: "🔵 Rare",
-        6: "🟣 Epic",
-        7: "🟣 Epic",
-        8: "🟠 Legendary",
-        9: "🔴 Mythic",
-        10: "👑 Celestial Crown"
+      // Rarity system (clean + better glow)
+      const rarityData = {
+        1: { name: "🟢 Common", glow: "#00ff00" },
+        2: { name: "🟢 Common", glow: "#00ff00" },
+        3: { name: "🟡 Genesis", glow: "#FFD700" },
+        4: { name: "🔵 Rare", glow: "#1E90FF" },
+        5: { name: "🔵 Rare", glow: "#1E90FF" },
+        6: { name: "🟣 Epic", glow: "#A020F0" },
+        7: { name: "🟣 Epic", glow: "#A020F0" },
+        8: { name: "🟠 Legendary", glow: "#FF8C00" },
+        9: { name: "🔴 Mythic", glow: "#FF0000" },
+        10: { name: "👑 Celestial Crown", glow: "#FFD700" }
       };
 
-      const rarityText = rarityMap[randomId];
+      const data = rarityData[randomId];
 
-      // Optional: add glow effect based on rarity
-      img.style.boxShadow = getGlowByRarity(rarityText);
+      // Apply glow
+      img.style.boxShadow = `0 0 20px ${data.glow}, 0 0 40px ${data.glow}`;
 
       // Final message
-      status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
+      status.innerText = `You minted NFT #${randomId}\n${data.name}`;
 
-    }, 1200);
+    }, 800);
 
-  }, 1200);
-}
-
-// Glow effect per rarity
-function getGlowByRarity(rarity) {
-  if (rarity.includes("Common")) return "0 0 10px Green";
-  if (rarity.includes("Genesis")) return "0 0 10px Yellow";
-  if (rarity.includes("Rare")) return "0 0 15px blue";
-  if (rarity.includes("Epic")) return "0 0 15px purple";
-  if (rarity.includes("Legendary")) return "0 0 20px orange";
-  if (rarity.includes("Mythic")) return "0 0 25px red";
-  if (rarity.includes("Celestial Crown")) return "0 0 30px gold";
-  return "none";
+  }, 800);
 }
 
 // Share on Twitter
