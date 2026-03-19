@@ -21,14 +21,14 @@ function mintNFT() {
       const rarityMap = {
         1: "🟢 Common",
         2: "🟢 Common",
-        3: "🟡 Uncommon",
+        3: "🟡 Genesis",
         4: "🔵 Rare",
         5: "🔵 Rare",
         6: "🟣 Epic",
         7: "🟣 Epic",
         8: "🟠 Legendary",
         9: "🔴 Mythic",
-        10: "⚡ Ultra Rare"
+        10: "👑 Celestial Crown"
       };
 
       const rarityText = rarityMap[randomId];
