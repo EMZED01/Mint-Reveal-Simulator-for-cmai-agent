@@ -48,34 +48,34 @@ function mintNFT() {
   }, 1200);
 }
 
-// Glow effects per rarity
-function getGlowByRarity(rarity) {
-  switch (rarity) {
-    case "🟢 Common":
-      return "0 0 10px gray";
+const rarityData = {
+  1: { name: "🟡 Genesis", glow: "#FFD700" },
+  2: { name: "🟢 Rising", glow: "#00FF7F" },
+  3: { name: "🔵 Origin", glow: "#1E90FF" },
+  4: { name: "🟠 Eclipse", glow: "#FF8C00" },
+  5: { name: "🟤 Rare", glow: "#8B4513" },
+  6: { name: "⚪️ Ultra Rare", glow: "#E5E5E5" },
+  7: { name: "🟣 Epic", glow: "#A020F0" },
+  8: { name: "💎 Legendary", glow: "#FFD700" },
+  9: { name: "🔴 Mythic", glow: "#FF0000" },
+  10: { name: "⚡️ Celestial Crown 👑", glow: "#00FFFF" }
+};
 
-    case "🟡 Uncommon":
-      return "0 0 12px green";
+const data = rarityData[randomId];
 
-    case "🔵 Rare":
-      return "0 0 15px blue";
+// Set NFT image
+img.src = "nfts/" + randomId + ".png";
 
-    case "🟣 Epic":
-      return "0 0 18px purple";
+// Apply glow
+img.style.boxShadow = `0 0 20px ${data.glow}, 0 0 40px ${data.glow}`;
 
-    case "🟠 Legendary":
-      return "0 0 22px orange";
+// Show result
+status.innerText = `You minted NFT #${randomId}\n${data.name}`;
 
-    case "🔴 Mythic":
-      return "0 0 25px red";
-
-    case "⚡ Ultra Rare":
-      return "0 0 30px gold";
-
-    default:
-      return "none";
-  }
+#nftImage {
+  transition: box-shadow 0.4s ease;
 }
+
 
 // Share on Twitter
 function shareMint() {
