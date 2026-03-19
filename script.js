@@ -4,7 +4,7 @@ function mintNFT() {
   const status = document.getElementById("statusText");
   const img = document.getElementById("nftImage");
 
-  img.src = "assets/mystery-box.png";
+  img.src = "assets/mystery-box.PNG";
   status.innerText = "Minting...";
 
   setTimeout(() => {
