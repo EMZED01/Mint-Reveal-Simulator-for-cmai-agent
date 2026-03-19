@@ -37,7 +37,7 @@ function mintNFT() {
       img.style.boxShadow = getGlowByRarity(rarityText);
 
       // Final message
-      status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
+      status.innerText = `Congratulations You minted NFT #${randomId}\n${rarityText}`;
 
     }, 1200);
 
