@@ -21,32 +21,6 @@ function mintNFT() {
       // Set image
       img.src = "nfts/" + randomId + ".PNG";
 
-      // Rarity mapping (based on NFT ID)
-      const rarityMap = {
-        1: "🟢 Common",
-        2: "🟢 Common",
-        3: "🟡 Uncommon",
-        4: "🔵 Rare",
-        5: "🔵 Rare",
-        6: "🟣 Epic",
-        7: "🟣 Epic",
-        8: "🟠 Legendary",
-        9: "🔴 Mythic",
-        10: "⚡ Ultra Rare"
-      };
-
-      const rarityText = rarityMap[randomId] || "Common";
-
-      // Apply glow
-      img.style.boxShadow = getGlowByRarity(rarityText);
-
-      // Display result
-      status.innerText = `You minted NFT #${randomId}\n${rarityText}`;
-
-    }, 1200);
-
-  }, 1200);
-}
 
 const rarityData = {
   1: { name: "🟡 Genesis", glow: "#FFD700" },
