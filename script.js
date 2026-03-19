@@ -23,13 +23,13 @@ setTimeout(() => {
 
       const rarityMap = {
         1: "🟢 Common",
-        2: "🟢 Common",
-        3: "🟡 Genesis",
+        2: "❇️ Common",
+        3: "🌕 Genesis",
         4: "🔵 Rare",
-        5: "🔵 Rare",
+        5: "🧢 Rare",
         6: "🟣 Epic",
-        7: "🟣 Epic",
-        8: "🟠 Legendary",
+        7: "😈 Epic",
+        8: "☣️ Legendary",
         9: "🔴 Mythic",
         10: "👑 Celestial Crown"
       };
